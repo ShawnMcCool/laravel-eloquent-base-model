@@ -31,23 +31,17 @@ class EloquentBase_Model extends Eloquent
 	/**
 	 * Validates model.
 	 *
-	 * @param  array   $input
 	 * @return bool
 	 */
-	public function is_valid( $input = null )
+	public function is_valid()
 	{
-
-		// if input is null then pull all input from the input class
-
-		if( is_null( $input ) )
-			$input = Input::all();
 
 		if( empty( static::$rules) )
 			return true;
 
 		// generate the validator and return its success status
 
-		static::$validation = Validator::make( $input, static::$rules, static::$messages );
+		static::$validation = Validator::make( $this->attributes, static::$rules, static::$messages );
 
 		return static::$validation->passes();
 
