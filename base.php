@@ -1,6 +1,6 @@
-<?php
+<?php namespace EloquentBaseModel;
 
-class EloquentBase_Model extends Eloquent
+class Base extends \Eloquent
 {
 
 	/**
@@ -26,24 +26,26 @@ class EloquentBase_Model extends Eloquent
 	 *
 	 * @var object
 	 */
-	public static $validation = false;
+	public $validation = false;
 
 	/**
 	 * Validates model.
 	 *
+	 * @param  array   $input
 	 * @return bool
 	 */
 	public function is_valid()
 	{
 
-		if( empty( static::$rules) )
+		if( empty( static::$rules ))
+		{
 			return true;
+		}
 
 		// generate the validator and return its success status
+		$this->validation = \Validator::make( $this->attributes, static::$rules, static::$messages );
 
-		static::$validation = Validator::make( $this->attributes, static::$rules, static::$messages );
-
-		return static::$validation->passes();
+		return $this->validation->passes();
 
 	}
 
