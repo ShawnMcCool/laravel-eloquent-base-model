@@ -2,7 +2,6 @@
 
 class Base extends \Eloquent
 {
-
 	/**
 	 * The rules array stores Validator rules in an array indexed by
 	 * the field_name to which the rules should be applied.
@@ -36,17 +35,14 @@ class Base extends \Eloquent
 	 */
 	public function is_valid()
 	{
-
-		if( empty( static::$rules ))
+		if(empty(static::$rules))
 		{
 			return true;
 		}
 
 		// generate the validator and return its success status
-		$this->validation = \Validator::make( $this->attributes, static::$rules, static::$messages );
+		$this->validation = \Validator::make($this->attributes, static::$rules, static::$messages);
 
 		return $this->validation->passes();
-
 	}
-
 }

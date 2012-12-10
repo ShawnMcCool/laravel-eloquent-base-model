@@ -17,7 +17,7 @@ Install to bundles/eloquent-base-model.
 Then, update your bundles.php to auto-start the bundle.
 
 	return array(
-		'eloquent-base-model' => array( 'auto' => true ),
+		'eloquent-base-model' => array('auto' => true),
 	);
 
 ### Example
@@ -26,7 +26,7 @@ Message Model
 
     class Message extends \EloquentBaseModel\Base
     {
-        public static $accessible = array( 'subject', 'body' );
+        public static $accessible = array('subject', 'body');
 
         public static $rules = array(
             'author_id'         => 'required|exists:users,id',
@@ -39,14 +39,14 @@ Message Model
 Controller Action
 
     // validate message
-    $message = new Message( Input::all() );
+    $message = new Message(Input::all());
 
     $message->recipient_id = 1;
     $message->author_id    = 1;
 
-    if( !$message->is_valid() )
+    if(!$message->is_valid())
     {
-        return Redirect::back()->with_input()->with_errors( $message->validation );
+        return Redirect::back()->with_input()->with_errors($message->validation);
     }
 
     $message->save();
