@@ -1,3 +1,5 @@
+This repository is going to be removed shortly. If you want it then please fork it or request that I transfer ownership to you.
+
 ## A Base-Model for Laravel's Eloquent ORM
 
 **Version: 1.1**
